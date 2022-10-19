@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="916.0" prefWidth="1486.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.challange.gui.AffChallengesController">
+   <children>
+      <TextField fx:id="TXTdure" layoutX="119.0" layoutY="135.0" prefHeight="46.0" prefWidth="217.0" />
+      <TextField fx:id="TXTdescrip" layoutX="108.0" layoutY="379.0" prefHeight="158.0" prefWidth="285.0" />
+      <TextField fx:id="TXTrecmpense" layoutX="119.0" layoutY="268.0" prefHeight="46.0" prefWidth="217.0" />
+      <Label layoutX="31.0" layoutY="150.0" text="DUREE" />
+      <Label layoutX="27.0" layoutY="283.0" text="RECOMPENSE" />
+      <Label layoutX="24.0" layoutY="380.0" text="DESCRIPTIONS" />
+      <TableView fx:id="TableChallenges" layoutX="462.0" layoutY="135.0" prefHeight="391.0" prefWidth="804.0">
+        <columns>
+          <TableColumn fx:id="Columnduree" prefWidth="90.0" text="DUREE" />
+          <TableColumn fx:id="Columnrecompense" prefWidth="100.0" text="RECOMPENSE" />
+            <TableColumn fx:id="Columndescription" prefWidth="408.0" text="DESCRIPTION" />
+            <TableColumn fx:id="ColumnIdChallenge" prefWidth="113.0" text="ID CHALLENGE" />
+            <TableColumn fx:id="ColumnIdStudio" prefWidth="92.0" text="ID STUDIO" />
+        </columns>
+      </TableView>
+      <Button fx:id="Ajouterchallenge" layoutX="462.0" layoutY="626.0" mnemonicParsing="false" onAction="#updateChallenge" prefHeight="46.0" prefWidth="153.0" text="UPDATE CHALLENGE" />
+      <Button fx:id="delletedchallenge" layoutX="667.0" layoutY="626.0" mnemonicParsing="false" onAction="#supprimerChallenge" prefHeight="46.0" prefWidth="153.0" text="DELET CHALLENGE" />
+      <Button fx:id="Ajouterchallenge" layoutX="202.0" layoutY="626.0" mnemonicParsing="false" onAction="#addChallenge" prefHeight="46.0" prefWidth="153.0" text="Add CHALLENGE" />
+   </children>
+</AnchorPane>
