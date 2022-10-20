@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="536.0" prefWidth="887.0" style="-fx-background-color: silver;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.challange.gui.AffChallengesController">
+   <children>
+      <TextField fx:id="TXTdure" disable="true" layoutX="324.0" layoutY="249.0" prefHeight="29.0" prefWidth="113.0" />
+      <TextField fx:id="TXTdescrip" disable="true" layoutX="324.0" layoutY="332.0" prefHeight="117.0" prefWidth="217.0" />
+      <TextField fx:id="TXTrecmpense" disable="true" layoutX="324.0" layoutY="291.0" prefHeight="29.0" prefWidth="113.0" />
+      <Label layoutX="216.0" layoutY="255.0" text="DUREE">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="216.0" layoutY="297.0" text="RECOMPENSE">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="216.0" layoutY="332.0" text="DESCRIPTIONS">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <TableView fx:id="TableChallenges" layoutX="84.0" layoutY="72.0" prefHeight="158.0" prefWidth="766.0">
+        <columns>
+          <TableColumn fx:id="Columnduree" prefWidth="90.0" text="DUREE" />
+          <TableColumn fx:id="Columnrecompense" prefWidth="395.0" text="RECOMPENSE" />
+            <TableColumn fx:id="Columndescription" prefWidth="280.0" text="DESCRIPTION" />
+        </columns>
+      </TableView>
+      <Button fx:id="delletedchallenge" layoutX="467.0" layoutY="474.0" mnemonicParsing="false" onAction="#supprimerChallenge" prefHeight="46.0" prefWidth="153.0" style="-fx-background-color: gold;" text="Refuser CHALLENGE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Button fx:id="Ajouterchallenge" layoutX="296.0" layoutY="474.0" mnemonicParsing="false" onAction="#addChallenge" prefHeight="46.0" prefWidth="153.0" style="-fx-background-color: gold;" text="Accepter Challenge">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Label contentDisplay="TOP" layoutX="324.0" layoutY="7.0" prefHeight="65.0" prefWidth="346.0" text="CHALLENGES" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Button fx:id="BackHome" layoutX="30.0" layoutY="482.0" mnemonicParsing="false" onAction="#BackHomeButton" text="Home" />
+   </children>
+</AnchorPane>

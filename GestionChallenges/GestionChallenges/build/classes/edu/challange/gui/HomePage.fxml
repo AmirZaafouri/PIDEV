@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: silver;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.challange.gui.HomePageController">
+   <children>
+      <Label layoutX="192.0" layoutY="26.0" prefHeight="85.0" prefWidth="216.0" text="ST-ART" textFill="#b99820">
+         <font>
+            <Font name="System Bold Italic" size="58.0" />
+         </font>
+      </Label>
+      <Button fx:id="VisitChallenges" layoutX="202.0" layoutY="143.0" mnemonicParsing="false" onAction="#ButtonVisitChallenges" style="-fx-background-color: gold;" text="Visit Challenges">
+         <font>
+            <Font name="System Italic" size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="ArtWork" layoutX="202.0" layoutY="211.0" mnemonicParsing="false" onAction="#ButtonArtWork" prefHeight="51.0" prefWidth="197.0" style="-fx-background-color: gold;" text="Visit Art Work">
+         <font>
+            <Font name="System Italic" size="24.0" />
+         </font>
+      </Button>
+      <Button layoutX="202.0" layoutY="276.0" mnemonicParsing="false" prefHeight="51.0" prefWidth="197.0" style="-fx-background-color: gold;" text="Visit Formation">
+         <font>
+            <Font name="System Italic" size="24.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
