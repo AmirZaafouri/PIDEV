@@ -31,10 +31,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
  * @author msi
  */
 public class CRUDINTERFACEController implements Initializable {
+
     int myIndex;
     int txtiduser;
 
-  
     @FXML
     private TextField TXTemail;
     @FXML
@@ -87,149 +87,148 @@ public class CRUDINTERFACEController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         table();
-        
-
-    
-    }    
-
+    }
 
     @FXML
     private void addU(ActionEvent event) {
-        
-       boolean isDescriptionEmpty = Validation.TextFieldValidations.isTextFieldNoEmpty(TXTDescription, error_description, "Description est vide");
+
+        boolean isDescriptionEmpty = Validation.TextFieldValidations.isTextFieldNoEmpty(TXTDescription, error_description, "Description est vide");
         boolean isEmailEmpty = Validation.TextFieldValidations.isTextFieldNoEmpty(TXTemail, error_email, "email est vide");
-         boolean isRoleEmpty = Validation.TextFieldValidations.isTextFieldNoEmpty(TXTRole, error_role, "role est vide");
-         boolean isNameEmpty = Validation.TextFieldValidations.isTextFieldNoEmpty(TXTName, error_name, "name est vide");
-         boolean isMainSoftwareEmpty = Validation.TextFieldValidations.isTextFieldNoEmpty(TXTMainSoftware, error_mainsoftware, "mainsoftware est vide");
-Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                 UserCRUD Cc= new UserCRUD();
-        String description,email,role,name,mainsoftware;
-         if(!(isDescriptionEmpty && isEmailEmpty && isRoleEmpty && isNameEmpty && isMainSoftwareEmpty)){
-         alert.setTitle("WARNING !!");
+        boolean isRoleEmpty = Validation.TextFieldValidations.isTextFieldNoEmpty(TXTRole, error_role, "role est vide");
+        boolean isNameEmpty = Validation.TextFieldValidations.isTextFieldNoEmpty(TXTName, error_name, "name est vide");
+        boolean isMainSoftwareEmpty = Validation.TextFieldValidations.isTextFieldNoEmpty(TXTMainSoftware, error_mainsoftware, "mainsoftware est vide");
+        boolean isEmailValid;
+        isEmailValid = Validation.TextFieldValidations.isValidEmailAddress(TXTemail.getText());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        UserCRUD Cc = new UserCRUD();
+        String description, email, role, name, mainsoftware;
+        if (!(isDescriptionEmpty && isEmailEmpty && isRoleEmpty && isNameEmpty && isMainSoftwareEmpty && isEmailValid)) {
+            alert.setTitle("WARNING !!");
             alert.setHeaderText("Cannot Add User because some inputs are missing!! ");
             alert.setContentText("invalid field ");
-    alert.showAndWait();
-    }
-    else{ 
-     
+            alert.showAndWait();
+        } else {
 
             description = TXTDescription.getText();
             email = TXTemail.getText();
             role = TXTRole.getText();
             name = TXTName.getText();
             mainsoftware = TXTMainSoftware.getText();
-       
-       
-                User g=new User(email, role, name,mainsoftware, description);
-            System.out.println("TXTUserID : "+g+"\n");
-                Cc.createUser(g);
-            
-alert.setTitle("User Registation");
- 
-alert.setHeaderText("Confirm adding User ");
-alert.setContentText("User ADDED!!");
- 
-alert.showAndWait();
-                table();
-        
-    }
+
+            User g = new User(email, role, name, mainsoftware, description);
+            System.out.println("TXTUserID : " + g + "\n");
+            Cc.createUser(g);
+
+            alert.setTitle("User Registation");
+
+            alert.setHeaderText("Confirm adding User ");
+            alert.setContentText("User ADDED!!");
+            alert.showAndWait();
+            table();
+
+        }
     }
 
     @FXML
     private void updateU(ActionEvent event) {
-        UserCRUD Cc= new UserCRUD();
-        String description,email,role,name,mainsoftware;
+        boolean isDescriptionEmpty = Validation.TextFieldValidations.isTextFieldNoEmpty(TXTDescription, error_description, "Description est vide");
+        boolean isEmailEmpty = Validation.TextFieldValidations.isTextFieldNoEmpty(TXTemail, error_email, "email est vide");
+        boolean isRoleEmpty = Validation.TextFieldValidations.isTextFieldNoEmpty(TXTRole, error_role, "role est vide");
+        boolean isNameEmpty = Validation.TextFieldValidations.isTextFieldNoEmpty(TXTName, error_name, "name est vide");
+        boolean isMainSoftwareEmpty = Validation.TextFieldValidations.isTextFieldNoEmpty(TXTMainSoftware, error_mainsoftware, "mainsoftware est vide");
+        boolean isEmailValid;
+        isEmailValid = Validation.TextFieldValidations.isValidEmailAddress(TXTemail.getText());
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        UserCRUD Cc = new UserCRUD();
+        String description, email, role, name, mainsoftware;
         myIndex = tableUser.getSelectionModel().getSelectedIndex();
         txtiduser = Integer.parseInt(String.valueOf(tableUser.getItems().get(myIndex).getId_user()));
-        //txtidStudio=Integer.parseInt(String.valueOf(tableUser.getItems().get(myIndex).getStudio_id()));   
+        if (!(isDescriptionEmpty && isEmailEmpty && isRoleEmpty && isNameEmpty && isMainSoftwareEmpty && isEmailValid)) {
+            alert.setTitle("WARNING !!");
+            alert.setHeaderText("Cannot Update User because some inputs Wrong!! ");
+            alert.setContentText("invalid field ");
+            alert.showAndWait();
+        } else {
             description = TXTDescription.getText();
             email = TXTemail.getText();
             role = TXTRole.getText();
             name = TXTName.getText();
             mainsoftware = TXTMainSoftware.getText();
-            
-            System.out.println("TXTUserID : "+TXTUserID+"\n");
-       
-                User g=new User( txtiduser,email, role, name,mainsoftware, description);
-                Cc.updateUser(g);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-alert.setTitle("User Registation");
- 
-alert.setHeaderText("Confirm the changes? ");
-alert.setContentText("Updated!!");
- 
-alert.showAndWait();
-                table();
+
+            System.out.println("TXTUserID : " + TXTUserID + "\n");
+
+            User g = new User(txtiduser, email, role, name, mainsoftware, description);
+            Cc.updateUser(g);
+            alert.setTitle("User Update");
+
+            alert.setHeaderText("Confirm the changes? ");
+            alert.setContentText("Updated!!");
+
+            alert.showAndWait();
+            table();
+        }
     }
-    public void table(){
-         UserCRUD Cc= new UserCRUD();
-  ArrayList<User> users = new ArrayList<>();
-              
-                     users= (ArrayList<User>) Cc.readUser();
-              
-  
-    ObservableList<User> obsl = FXCollections.observableArrayList(users); 
-  
-    tableUser.setItems(obsl);
-    
-    columnIduser.setCellValueFactory(new  PropertyValueFactory<User, Integer>("id_user"));  
-    columnName.setCellValueFactory(new  PropertyValueFactory<User, String>("login"));
-    columnEmail.setCellValueFactory(new  PropertyValueFactory<User, String>("adresse_email"));
-    columnRole.setCellValueFactory(new  PropertyValueFactory<User, String>("role"));
-    columnDescription.setCellValueFactory(new  PropertyValueFactory<User, String>("description"));
-    columnMainSoftware.setCellValueFactory(new  PropertyValueFactory<User, String>("main_software"));
-    
-//    columnIduser.setCellValueFactory(f -> f.getValue().id_userProperty());  
+
+    public void table() {
+        UserCRUD Cc = new UserCRUD();
+        ArrayList<User> users = new ArrayList<>();
+
+        users = (ArrayList<User>) Cc.readUser();
+
+        ObservableList<User> obsl = FXCollections.observableArrayList(users);
+
+        tableUser.setItems(obsl);
+
+        columnIduser.setCellValueFactory(new PropertyValueFactory<User, Integer>("id_user"));
+        columnName.setCellValueFactory(new PropertyValueFactory<User, String>("login"));
+        columnEmail.setCellValueFactory(new PropertyValueFactory<User, String>("adresse_email"));
+        columnRole.setCellValueFactory(new PropertyValueFactory<User, String>("role"));
+        columnDescription.setCellValueFactory(new PropertyValueFactory<User, String>("description"));
+        columnMainSoftware.setCellValueFactory(new PropertyValueFactory<User, String>("main_software"));
+
+//    columnIduser.setCellValueFactory(f -> f.getValue().id_userProperty());
 //    columnName.setCellValueFactory(f -> f.getValue().loginProperty());
 //    columnEmail.setCellValueFactory(f -> f.getValue().adresse_emailProperty());
 //    columnRole.setCellValueFactory(f -> f.getValue().roleProperty());
 //    columnDescription.setCellValueFactory(f -> f.getValue().descriptionProperty());
 //    columnMainSoftware.setCellValueFactory(f -> f.getValue().main_softwareProperty());
-    tableUser.setRowFactory( tv -> {
-     TableRow<User> myRow = new TableRow<>();
-     myRow.setOnMouseClicked (event ->
-     {
-        if (event.getClickCount() == 1 && (!myRow.isEmpty()))
-        {
-            myIndex =  tableUser.getSelectionModel().getSelectedIndex();
-        
-             txtiduser=Integer.parseInt(String.valueOf(tableUser.getItems().get(myIndex).getId_user()));               
-             //txtidStudio=Integer.parseInt(String.valueOf(tableUser.getItems().get(myIndex).getStudio_id()));               
-             TXTemail.setText(tableUser.getItems().get(myIndex).getAdresse_email());            
-             TXTDescription.setText(tableUser.getItems().get(myIndex).getDescription()); 
-             TXTName.setText(tableUser.getItems().get(myIndex).getLogin());
-             TXTMainSoftware.setText(tableUser.getItems().get(myIndex).getMain_software());
-             TXTRole.setText(tableUser.getItems().get(myIndex).getRole());
-             
-             
-                   
-          
-        }
-     });
-        return myRow;
-                   });
-    
+        tableUser.setRowFactory(tv -> {
+            TableRow<User> myRow = new TableRow<>();
+            myRow.setOnMouseClicked(event
+                    -> {
+                if (event.getClickCount() == 1 && (!myRow.isEmpty())) {
+                    myIndex = tableUser.getSelectionModel().getSelectedIndex();
+
+                    txtiduser = Integer.parseInt(String.valueOf(tableUser.getItems().get(myIndex).getId_user()));
+                    TXTemail.setText(tableUser.getItems().get(myIndex).getAdresse_email());
+                    TXTDescription.setText(tableUser.getItems().get(myIndex).getDescription());
+                    TXTName.setText(tableUser.getItems().get(myIndex).getLogin());
+                    TXTMainSoftware.setText(tableUser.getItems().get(myIndex).getMain_software());
+                    TXTRole.setText(tableUser.getItems().get(myIndex).getRole());
+
+                }
+            });
+            return myRow;
+        });
+
     }
 
     @FXML
     private void deleteU(ActionEvent event) {
-        UserCRUD Cc= new UserCRUD();
-       
+        UserCRUD Cc = new UserCRUD();
+
         myIndex = tableUser.getSelectionModel().getSelectedIndex();
         txtiduser = Integer.parseInt(String.valueOf(tableUser.getItems().get(myIndex).getId_user()));
-      
-        
-       
-          
-                Cc.deleteUser(txtiduser);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-alert.setTitle("User Delete");
- 
-alert.setHeaderText("Confirm deleting the user? ");
-alert.setContentText("User deleted!!!");
- 
-alert.showAndWait();
-                table();
+
+        Cc.deleteUser(txtiduser);
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("User Delete");
+
+        alert.setHeaderText("Confirm deleting the user? ");
+        alert.setContentText("User deleted!!!");
+
+        alert.showAndWait();
+        table();
     }
-    
+
 }
