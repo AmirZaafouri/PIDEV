@@ -14,6 +14,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 /**
  *
  * @author msi 
@@ -133,6 +135,7 @@ public class UserCRUD implements InterfaceUser<User>  {
     @Override
     public List readUser() {
         List <User> list = new ArrayList<>();
+      // ObservableList<User> list = FXCollections.observableArrayList(); 
         try {
             String req;
             req = "SELECT id_user,login,adresse_email,role,main_software,description FROM user";

@@ -7,6 +7,7 @@ package edu.workshop.gui;
 
 import edu.worshop.entites.User;
 import edu.worshop.services.UserCRUD;
+import Validation.TextFieldValidations;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -17,6 +18,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
@@ -67,6 +69,16 @@ public class CRUDINTERFACEController implements Initializable {
     private Button buttonUpdateUser;
     @FXML
     private Button buttonDeleteUser;
+    @FXML
+    private Label error_email;
+    @FXML
+    private Label error_mainsoftware;
+    @FXML
+    private Label error_name;
+    @FXML
+    private Label error_role;
+    @FXML
+    private Label error_description;
 
     /**
      * Initializes the controller class.
@@ -75,41 +87,32 @@ public class CRUDINTERFACEController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
         table();
-//         UserCRUD Cc= new UserCRUD();
-//  ArrayList<User> users = new ArrayList<>();
-//              
-//                     users= (ArrayList<User>) Cc.readUser();
-//              
-//  
-//    ObservableList<User> obsl = FXCollections.observableArrayList(users); 
-//  
-//    tableUser.setItems(obsl);
-//    
-//    columnIduser.setCellValueFactory(new  PropertyValueFactory<>("id_user"));    
-//      columnEmail.setCellValueFactory(new  PropertyValueFactory<>("adresse_email"));
-//    columnRole.setCellValueFactory(new  PropertyValueFactory<>("role"));
-//   columnDescription.setCellValueFactory(new  PropertyValueFactory<>("description"));
-//   columnMainSoftware.setCellValueFactory(new  PropertyValueFactory<>("main_software"));
-//   columnName.setCellValueFactory(new  PropertyValueFactory<>("login"));
-//   
+        
+
     
     }    
 
-//    private void ajouterP(ActionEvent event) {
-//        String nom,prenom;
-//        nom=NomTXT.getText();   
-//        prenom=PrenomTXT.getText();
-//      User e=new User(nom, prenom) ;
-//      UserCRUD Cc = new UserCRUD();
-//      Cc.ajouterpersonne(e);
-//
-//    }
 
     @FXML
     private void addU(ActionEvent event) {
-        UserCRUD Cc= new UserCRUD();
+        
+       boolean isDescriptionEmpty = Validation.TextFieldValidations.isTextFieldNoEmpty(TXTDescription, error_description, "Description est vide");
+        boolean isEmailEmpty = Validation.TextFieldValidations.isTextFieldNoEmpty(TXTemail, error_email, "email est vide");
+         boolean isRoleEmpty = Validation.TextFieldValidations.isTextFieldNoEmpty(TXTRole, error_role, "role est vide");
+         boolean isNameEmpty = Validation.TextFieldValidations.isTextFieldNoEmpty(TXTName, error_name, "name est vide");
+         boolean isMainSoftwareEmpty = Validation.TextFieldValidations.isTextFieldNoEmpty(TXTMainSoftware, error_mainsoftware, "mainsoftware est vide");
+Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                 UserCRUD Cc= new UserCRUD();
         String description,email,role,name,mainsoftware;
-        //txtidStudio =1;
+         if(!(isDescriptionEmpty && isEmailEmpty && isRoleEmpty && isNameEmpty && isMainSoftwareEmpty)){
+         alert.setTitle("WARNING !!");
+            alert.setHeaderText("Cannot Add User because some inputs are missing!! ");
+            alert.setContentText("invalid field ");
+    alert.showAndWait();
+    }
+    else{ 
+     
+
             description = TXTDescription.getText();
             email = TXTemail.getText();
             role = TXTRole.getText();
@@ -120,7 +123,7 @@ public class CRUDINTERFACEController implements Initializable {
                 User g=new User(email, role, name,mainsoftware, description);
             System.out.println("TXTUserID : "+g+"\n");
                 Cc.createUser(g);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            
 alert.setTitle("User Registation");
  
 alert.setHeaderText("Confirm adding User ");
@@ -129,6 +132,7 @@ alert.setContentText("User ADDED!!");
 alert.showAndWait();
                 table();
         
+    }
     }
 
     @FXML
@@ -164,16 +168,16 @@ alert.showAndWait();
                      users= (ArrayList<User>) Cc.readUser();
               
   
-    ObservableList<User> obsl = FXCollections.observableArrayList(); 
+    ObservableList<User> obsl = FXCollections.observableArrayList(users); 
   
     tableUser.setItems(obsl);
     
-    columnIduser.setCellValueFactory(new  PropertyValueFactory<>("id_user"));  
-    columnName.setCellValueFactory(new  PropertyValueFactory<>("login"));
-    columnEmail.setCellValueFactory(new  PropertyValueFactory<>("adresse_email"));
-    columnRole.setCellValueFactory(new  PropertyValueFactory<>("role"));
-    columnDescription.setCellValueFactory(new  PropertyValueFactory<>("description"));
-    columnMainSoftware.setCellValueFactory(new  PropertyValueFactory<>("main_software"));
+    columnIduser.setCellValueFactory(new  PropertyValueFactory<User, Integer>("id_user"));  
+    columnName.setCellValueFactory(new  PropertyValueFactory<User, String>("login"));
+    columnEmail.setCellValueFactory(new  PropertyValueFactory<User, String>("adresse_email"));
+    columnRole.setCellValueFactory(new  PropertyValueFactory<User, String>("role"));
+    columnDescription.setCellValueFactory(new  PropertyValueFactory<User, String>("description"));
+    columnMainSoftware.setCellValueFactory(new  PropertyValueFactory<User, String>("main_software"));
     
 //    columnIduser.setCellValueFactory(f -> f.getValue().id_userProperty());  
 //    columnName.setCellValueFactory(f -> f.getValue().loginProperty());
@@ -195,6 +199,8 @@ alert.showAndWait();
              TXTDescription.setText(tableUser.getItems().get(myIndex).getDescription()); 
              TXTName.setText(tableUser.getItems().get(myIndex).getLogin());
              TXTMainSoftware.setText(tableUser.getItems().get(myIndex).getMain_software());
+             TXTRole.setText(tableUser.getItems().get(myIndex).getRole());
+             
              
                    
           

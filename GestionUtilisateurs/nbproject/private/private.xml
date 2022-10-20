@@ -3,10 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/user/Documents/developpementwebJAVA/firstproject/src/edu/worshop/entites/User.java</file>
-            <file>file:/C:/Users/user/Documents/developpementwebJAVA/firstproject/src/edu/workshop/gui/MainFxJava.java</file>
-            <file>file:/C:/Users/user/Documents/developpementwebJAVA/firstproject/src/edu/workshop/gui/CRUDINTERFACEController.java</file>
-            <file>file:/C:/Users/user/Documents/developpementwebJAVA/firstproject/src/edu/worshop/services/UserCRUD.java</file>
+            <file>file:/C:/Users/user/Documents/developpementwebJAVA/GestionUtilisateurs/src/edu/worshop/entites/User.java</file>
+            <file>file:/C:/Users/user/Documents/developpementwebJAVA/GestionUtilisateurs/src/edu/worshop/utils/MyConnexion.java</file>
+            <file>file:/C:/Users/user/Documents/developpementwebJAVA/GestionUtilisateurs/src/edu/workshop/gui/CRUDINTERFACEController.java</file>
+            <file>file:/C:/Users/user/Documents/developpementwebJAVA/GestionUtilisateurs/src/edu/worshop/services/UserCRUD.java</file>
+            <file>file:/C:/Users/user/Documents/developpementwebJAVA/GestionUtilisateurs/src/edu/workshop/gui/MainFxJava.java</file>
         </group>
     </open-files>
 </project-private>
