@@ -21,23 +21,24 @@ import javafx.stage.Stage;
  * @author msi
  */
 public class MainFxJava extends Application {
-    
+
     @Override
     public void start(Stage primaryStage) {
         Parent root;
-   
-        
-       try{
-        
-          root=FXMLLoader.load(getClass().getResource("CRUDINTERFACE.FXML"));
-        Scene scene = new Scene(root);
-        
-        primaryStage.setTitle("Gestion des utilisateurs!");
-        primaryStage.setScene(scene);
-        primaryStage.show();}
-       catch(IOException ex){
-       System.out.print(ex.getMessage());
-       }
+
+        try {
+
+            //root=FXMLLoader.load(getClass().getResource("CRUDINTERFACE.FXML"));
+            //root = FXMLLoader.load(getClass().getResource("HomeUsers.FXML"));
+            root = FXMLLoader.load(getClass().getResource("Sign_in_user.FXML"));
+            Scene scene = new Scene(root);
+
+            primaryStage.setTitle("Gestion des utilisateurs!");
+            primaryStage.setScene(scene);
+            primaryStage.show();
+        } catch (IOException ex) {
+            System.out.print(ex.getMessage());
+        }
     }
 
     /**
@@ -46,5 +47,5 @@ public class MainFxJava extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-    
+
 }

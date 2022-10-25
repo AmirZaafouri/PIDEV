@@ -3,11 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/user/Documents/developpementwebJAVA/GestionUtilisateurs/src/edu/worshop/entites/User.java</file>
-            <file>file:/C:/Users/user/Documents/developpementwebJAVA/GestionUtilisateurs/src/edu/worshop/utils/MyConnexion.java</file>
-            <file>file:/C:/Users/user/Documents/developpementwebJAVA/GestionUtilisateurs/src/edu/workshop/gui/CRUDINTERFACEController.java</file>
-            <file>file:/C:/Users/user/Documents/developpementwebJAVA/GestionUtilisateurs/src/edu/worshop/services/UserCRUD.java</file>
+            <file>file:/C:/Users/user/Documents/developpementwebJAVA/GestionUtilisateurs/src/edu/workshop/gui/AdminRegisterController.java</file>
+            <file>file:/C:/Users/user/Documents/developpementwebJAVA/GestionUtilisateurs/src/edu/workshop/gui/HomeUsersController.java</file>
             <file>file:/C:/Users/user/Documents/developpementwebJAVA/GestionUtilisateurs/src/edu/workshop/gui/MainFxJava.java</file>
+            <file>file:/C:/Users/user/Documents/developpementwebJAVA/GestionUtilisateurs/src/edu/workshop/gui/Sign_in_userController.java</file>
+            <file>file:/C:/Users/user/Documents/developpementwebJAVA/GestionUtilisateurs/src/edu/workshop/gui/design.css</file>
+            <file>file:/C:/Users/user/Documents/developpementwebJAVA/GestionUtilisateurs/src/edu/workshop/gui/labo.fxml</file>
         </group>
     </open-files>
 </project-private>

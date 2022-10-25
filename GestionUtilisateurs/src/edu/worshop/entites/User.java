@@ -5,14 +5,13 @@
  */
 package edu.worshop.entites;
 
-import com.mysql.cj.conf.StringProperty;
-
 /**
  *
  * @author msi
  */
 public class User {
-    private Integer id_user; 
+
+    private Integer id_user;
     private String password;
     private String adresse_email;
     private String role;
@@ -26,11 +25,6 @@ public class User {
 //    private final StringProperty main_software;
 //    private final StringProperty description;
 
-    
-           
-            
-            
-
     public User(Integer id_user, String password, String adresse_email, String role, String login, String main_software, String description) {
         this.id_user = id_user;
         this.password = password;
@@ -39,7 +33,7 @@ public class User {
         this.login = login;
         this.main_software = main_software;
         this.description = description;
-        
+
     }
 
     public User(Integer id_user, String adresse_email, String role, String login, String main_software, String description) {
@@ -50,7 +44,6 @@ public class User {
         this.main_software = main_software;
         this.description = description;
     }
-    
 
     public User(Integer id_user, String adresse_email, String role, String main_software, String description) {
         this.id_user = id_user;
@@ -69,15 +62,21 @@ public class User {
         this.description = description;
     }
 
-    public User(String adresse_email, String role, String login, String main_software, String description) {
+//    public User(String adresse_email, String role, String login, String main_software, String description) {
+//        this.adresse_email = adresse_email;
+//        this.role = role;
+//        this.login = login;
+//        this.main_software = main_software;
+//        this.description = description;
+    public User(String password, String adresse_email, String role, String login, String main_software) {
+        this.password = password;
         this.adresse_email = adresse_email;
         this.role = role;
         this.login = login;
         this.main_software = main_software;
-        this.description = description;
     }
-    
 
+//    }
     public Integer getId_user() {
         return id_user;
     }
@@ -139,8 +138,4 @@ public class User {
         return "User{" + "id_user=" + id_user + ", password=" + password + ", adresse_email=" + adresse_email + ", role=" + role + ", login=" + login + ", main_software=" + main_software + ", description=" + description + '}';
     }
 
-
-
-
-    
 }
