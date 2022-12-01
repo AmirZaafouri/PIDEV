@@ -1,0 +1,458 @@
+{% apply inline_css(source("style.css"), source("bootstrap.min.css")) %}
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<title>Offredemploi - Bootstrap 5 Admin Template</title>
+		<meta content="width=device-width, initial-scale=1.0" name="viewport">
+		<meta content="" name="keywords">
+		<meta
+		content="" name="description">
+
+		<!-- Favicon -->
+		<link
+		href="img/favicon.ico" rel="icon">
+
+		<!-- Google Web Fonts -->
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link
+		href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Roboto:wght@500;700&display=swap" rel="stylesheet">
+
+		<!-- Icon Font Stylesheet -->
+		<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
+		<link
+		href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+		<!-- Libraries Stylesheet -->
+		<link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+		<link
+		href="lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css" rel="stylesheet"/>
+
+		<!-- Customized Bootstrap Stylesheet -->
+		<link
+		href="css/bootstrap.min.css" rel="stylesheet">
+
+		<!-- Template Stylesheet -->
+		<link href="css/style.css" rel="stylesheet">
+	</head>
+
+	<body>
+		<div class="container-fluid position-relative d-flex p-0">
+			<!-- Spinner Start -->
+
+			<!-- Spinner End -->
+
+
+			<!-- Sidebar Start -->
+				<div class="sidebar pe-4 pb-3"> <nav class="navbar bg-secondary navbar-dark">
+					<a href="index.html" class="navbar-brand mx-4 mb-3">
+						<h3 class="text-primary">
+							<i class="fa fa-user-edit me-2"></i>Offre</h3>
+					</a>
+					<div class="d-flex align-items-center ms-4 mb-4">
+						<div class="position-relative">
+							<img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+							<div class="bg-success rounded-circle border border-2 border-white position-absolute end-0 bottom-0 p-1"></div>
+						</div>
+						<div class="ms-3">
+							<h6 class="mb-0">Jhon Doe</h6>
+							<span>Admin</span>
+						</div>
+					</div>
+					<div class="navbar-nav w-100">
+						<a href="{{path('app_temp')}}" class="nav-item nav-link">
+							<i class="fa fa-tachometer-alt me-2"></i>Home</a>
+						<div class="nav-item dropdown">
+
+							<div class="dropdown-menu bg-transparent border-0">
+								<a href="button.html" class="dropdown-item">Buttons</a>
+								<a href="typography.html" class="dropdown-item">Typography</a>
+								<a href="element.html" class="dropdown-item">Other Elements</a>
+							</div>
+						</div>
+
+						<a href="{{path('app_offredemploi_new')}}" class="nav-item nav-link">
+							<i class="fa fa-chart-bar me-2"></i>Create</a>
+						<div class="nav-item dropdown">
+
+							<div class="dropdown-menu bg-transparent border-0">
+								<a href="signin.html" class="dropdown-item">Sign In</a>
+								<a href="signup.html" class="dropdown-item">Sign Up</a>
+								<a href="404.html" class="dropdown-item">404 Error</a>
+								<a href="blank.html" class="dropdown-item">Blank Page</a>
+							</div>
+						</div>
+					</div>
+				</nav>
+			</div>
+			<!-- Sidebar End -->
+
+
+			<!-- Content Start -->
+			<div
+				class="content">
+				<!-- Navbar Start -->
+				<nav class="navbar navbar-expand bg-secondary navbar-dark sticky-top px-4 py-0">
+					<a href="index.html" class="navbar-brand d-flex d-lg-none me-4">
+						<h2 class="text-primary mb-0">
+							<i class="fa fa-user-edit"></i>
+						</h2>
+					</a>
+					<a href="#" class="sidebar-toggler flex-shrink-0">
+						<i class="fa fa-bars"></i>
+					</a>
+					<form>
+						<br><br>
+						<input type="text" id="myInput" class="form-control bg-dark border-0" onkeyup="myFunction()" placeholder="Search"><br>
+
+						<input type="checkbox" id="vehicle1" name="vehicle1">
+						<label for="vehicle1">
+							par Id</label>
+						<input type="checkbox" id="vehicle1" name="vehicle1">
+						<label for="vehicle1">
+							par Titre</label>
+						<input type="checkbox" id="vehicle1" name="vehicle1">
+						<label for="vehicle1">
+							par Salaire</label>
+						<input type="checkbox" id="vehicle1" name="vehicle1">
+						<label for="vehicle1">par Description</label>
+						<input type="checkbox" id="vehicle1" name="vehicle1">
+						<label for="vehicle1">
+							par type</label>
+						<input type="checkbox" id="vehicle1" name="vehicle1">
+						<label for="vehicle1">
+							par IdStudio</label>
+						<br>
+					</form>
+					<div class="navbar-nav align-items-center ms-auto">
+						<div class="nav-item dropdown">
+							<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+								<i class="fa fa-envelope me-lg-2"></i>
+								<span class="d-none d-lg-inline-flex">Message</span>
+							</a>
+							<div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+								<a href="#" class="dropdown-item">
+									<div class="d-flex align-items-center">
+										<img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+										<div class="ms-2">
+											<h6 class="fw-normal mb-0">Jhon send you a message</h6>
+											<small>15 minutes ago</small>
+										</div>
+									</div>
+								</a>
+								<hr class="dropdown-divider">
+								<a href="#" class="dropdown-item">
+									<div class="d-flex align-items-center">
+										<img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+										<div class="ms-2">
+											<h6 class="fw-normal mb-0">Jhon send you a message</h6>
+											<small>15 minutes ago</small>
+										</div>
+									</div>
+								</a>
+								<hr class="dropdown-divider">
+								<a href="#" class="dropdown-item">
+									<div class="d-flex align-items-center">
+										<img class="rounded-circle" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+										<div class="ms-2">
+											<h6 class="fw-normal mb-0">Jhon send you a message</h6>
+											<small>15 minutes ago</small>
+										</div>
+									</div>
+								</a>
+								<hr class="dropdown-divider">
+								<a href="#" class="dropdown-item text-center">See all message</a>
+							</div>
+						</div>
+						<div class="nav-item dropdown">
+							<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+								<i class="fa fa-bell me-lg-2"></i>
+								<span class="d-none d-lg-inline-flex">Notificatin</span>
+							</a>
+							<div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+								<a href="#" class="dropdown-item">
+									<h6 class="fw-normal mb-0">Profile updated</h6>
+									<small>15 minutes ago</small>
+								</a>
+								<hr class="dropdown-divider">
+								<a href="#" class="dropdown-item">
+									<h6 class="fw-normal mb-0">New user added</h6>
+									<small>15 minutes ago</small>
+								</a>
+								<hr class="dropdown-divider">
+								<a href="#" class="dropdown-item">
+									<h6 class="fw-normal mb-0">Password changed</h6>
+									<small>15 minutes ago</small>
+								</a>
+								<hr class="dropdown-divider">
+								<a href="#" class="dropdown-item text-center">See all notifications</a>
+							</div>
+						</div>
+						<div class="nav-item dropdown">
+							<a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
+								<img class="rounded-circle me-lg-2" src="img/user.jpg" alt="" style="width: 40px; height: 40px;">
+								<span class="d-none d-lg-inline-flex">John Doe</span>
+							</a>
+							<div class="dropdown-menu dropdown-menu-end bg-secondary border-0 rounded-0 rounded-bottom m-0">
+								<a href="#" class="dropdown-item">My Profile</a>
+								<a href="#" class="dropdown-item">Settings</a>
+								<a href="#" class="dropdown-item">Log Out</a>
+							</div>
+						</div>
+					</div>
+				</nav>
+				<!-- Navbar End -->
+
+
+				<!-- Table Start -->
+				<div class="container-fluid pt-4 px-4">
+					<div class="row g-4">
+						<div class="col-sm-12 col-xl-6">
+							<div class="bg-secondary rounded h-100 p-4">
+								<h6 class="mb-4">Basic Table</h6>
+								<table id="myTable" onkeyup="myFunction()" class="table" cellspacing="0">
+									<thead>
+										<tr>
+
+											<th scope="col">Id</th>
+											<th scope="col">Titre</th>
+											<th scope="col">Salaire</th>
+											<th scope="col">Description</th>
+											<th scope="col">Type</th>
+											<th scope="col">IdStudio</th>
+										</tr>
+									</thead>
+									<tbody>
+										{% for offredemploi in offredemplois %}
+
+											<tr>
+
+												<td id="td">{{ offredemploi.id }}</td>
+												<td id="td1">{{ offredemploi.titre }}</td>
+												<td id="td2">{{ offredemploi.salaire }}</td>
+												<td id="td3">{{ offredemploi.description }}</td>
+												<td id="td4">{{ offredemploi.type.nom }}</td>
+												<td id="td5">{{ offredemploi.idstudio }}</td>
+												<td>
+													<a href="{{ path('app_offredemploi_show', {'id': offredemploi.id}) }}">show</a>
+													<a href="{{ path('app_offredemploi_edit', {'id': offredemploi.id}) }}">edit</a>
+												</td>
+
+											</tr>
+										{% else %}
+											<tr>
+												<td colspan="6">no records found</td>
+											</tr>
+										{% endfor %}
+
+
+									</tbody>
+									<script>
+										$(offredemplois).ready(function () {
+$('#myTable').DataTable();
+$('.dataTables_length').addClass('bs-select');
+});
+									</script>
+								</table>
+							</div>
+						</div>
+
+
+						<div class="container">
+							<div class="navigation">
+
+								{{ knp_pagination_render(offredemplois) }}
+
+							</div><br>
+							<div>
+								<h3 id="lbltipAddedComment" onkeyup="myFunction()"></h3>
+							</div>
+							<h2>Select Number Of Rows</h2>
+							<div
+								class="form-group">
+								<!--		Show Numbers Of Rows 		-->
+								<form action="#" method="post">
+									<select name="state" class="form-control" id="maxRows">
+										<option value="5000">Show ALL Rows</option>
+										<option value="5">5</option>
+										<option value="10">10</option>
+										<option value="15">15</option>
+										<option value="20">20</option>
+										<option value="50">50</option>
+										<option value="70">70</option>
+										<option value="100">100</option>
+									</select>
+									<input type="submit" name="submit" value="Get Selected Values"/>
+								</form>
+							</div>
+							<div>
+								<br><br>
+								<form method="GET">
+									<input type="text" id="search-user" class="form-control bg-dark border-0" name="user" placeholder="Id Search information about"><br>
+									<br><br>
+									{% if product == null %}
+										<h3>
+											Error 404 Not found</h3>
+
+									{% else %}
+
+										<tr>
+											<h1>id:
+												{{product.id}}</h1>
+											<h6>type:
+												{{product.type.nom}}</h6>
+											<h6>titre:
+												{{product.titre}}</h6>
+											<h6>description:
+												{{product.description}}</h6>
+											<h6>salaire:
+												{{product.salaire}}</h6>
+											<h6>idStudio:
+												{{product.idStudio}}</h6>
+										</tr>
+
+									{% endif %}
+								</form>
+							</div>
+							<!-- Table End -->
+
+
+							<!-- Footer Start -->
+							<div class="container-fluid pt-4 px-4">
+								<div class="bg-secondary rounded-top p-4">
+									<div class="row">
+										<div class="col-12 col-sm-6 text-center text-sm-start">
+											&copy;
+											<a href="#">Your Site Name</a>, All Right Reserved.
+										</div>
+										<div
+											class="col-12 col-sm-6 text-center text-sm-end">
+											<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+											Designed By
+											<a href="https://htmlcodex.com">HTML Codex</a>
+											<br>Distributed By:
+											<a href="https://themewagon.com" target="_blank">ThemeWagon</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- Footer End -->
+						</div>
+						<!-- Content End -->
+
+
+						<!-- Back to Top -->
+						<a href="#" class="btn btn-lg btn-primary btn-lg-square back-to-top">
+							<i class="bi bi-arrow-up"></i>
+						</a>
+					</div>
+
+					<!-- JavaScript Libraries -->
+					<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+					<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
+					<script src="lib/chart/chart.min.js"></script>
+					<script src="lib/easing/easing.min.js"></script>
+					<script src="lib/waypoints/waypoints.min.js"></script>
+					<script src="lib/owlcarousel/owl.carousel.min.js"></script>
+					<script src="lib/tempusdominus/js/moment.min.js"></script>
+					<script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
+					<script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
+
+					<!-- Template Javascript -->
+					<script src="jsb/main.js"></script>
+				</body>
+
+				<!-- filter-->
+				<script>
+					function myFunction() { // Declare variables
+var input,
+filter,
+table,
+tr,
+td,
+td1,
+td2,
+td3,
+td4,
+td5,
+i,
+check,
+check1,
+check2,
+check3,
+check4,
+check5,
+txtValue,
+txtValue1,
+txtValue2,
+txtValue3,
+txtValue4,
+txtValue5;
+input = document.getElementById("myInput");
+filter = input.value.toUpperCase();
+table = document.getElementById("myTable");
+tr = table.getElementsByTagName("tr");
+j = 0;
+j1 = 0;
+// Loop through all table rows, and hide those who don't match the search query
+for (i = 0; i < tr.length; i++) {
+td = tr[i].getElementsByTagName("td")[1];
+td1 = tr[i].getElementsByTagName("td")[2];
+td2 = tr[i].getElementsByTagName("td")[3];
+td3 = tr[i].getElementsByTagName("td")[4];
+td4 = tr[i].getElementsByTagName("td")[5];
+td5 = tr[i].getElementsByTagName("td")[6];
+
+check = document.getElementsByName("vehicle1")[0];
+check1 = document.getElementsByName("vehicle1")[1];
+check2 = document.getElementsByName("vehicle1")[2];
+check3 = document.getElementsByName("vehicle1")[3];
+check4 = document.getElementsByName("vehicle1")[4];
+check5 = document.getElementsByName("vehicle1")[5];
+if (td || td1 || td2 || td3 || td4) {
+txtValue = td.textContent || td.innerText;
+txtValue1 = td1.textContent || td1.innerText;
+txtValue2 = td2.textContent || td2.innerText;
+txtValue3 = td3.textContent || td3.innerText;
+txtValue4 = td4.textContent || td4.innerText;
+txtValue5 = td5.textContent || td5.innerText;
+if (txtValue4 == "offre d'emploi") {
+j ++;
+} else {
+j1 ++;
+}
+
+if (((txtValue.toUpperCase().indexOf(filter) > -1) && (check.checked == true)) || ((txtValue1.toUpperCase().indexOf(filter) > -1) && (check1.checked == true)) || ((txtValue2.toUpperCase().indexOf(filter) > -1) && (check2.checked == true)) || ((txtValue3.toUpperCase().indexOf(filter) > -1) && (check3.checked == true)) || ((txtValue4.toUpperCase().indexOf(filter) > -1) && (check4.checked == true)) || ((txtValue5.toUpperCase().indexOf(filter) > -1) && (check5.checked == true))) {
+tr[i].style.display = "";
+} else {
+tr[i].style.display = "none";
+}
+}
+
+}
+ff = document.getElementById('lbltipAddedComment');
+ff.innerHTML = "nombre offre emploi=" + j + ",nombre de stage=" + j1;
+
+}
+				</script>
+				<!--filter end-->
+				<!-- pagination-->
+				<script>
+
+					$(function () { // Just to append id number for each row
+$('table tr:eq(0)').prepend('<th>N°</th>');
+
+var id = 0;
+
+$('table tr:gt(0)').each(function () {
+id++;
+$(this).prepend('<td>' + id + '</td>');
+});
+});
+				</script>
+			</html>
+			{% endapply %}</body>
+	</body>
+</html></body></html>

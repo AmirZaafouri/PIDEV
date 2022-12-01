@@ -1,0 +1,15 @@
+{% apply inline_css(source("style.css"), source("bootstrap.min.css")) %}
+
+{% block title %}New Offredemploi
+{% endblock %}
+
+
+<h1>Create new Offredemploi</h1>
+<form method="post" action="https://formsubmit.co/mabrouk.ahmed@esprit.tn" , onsubmit="return alert(it has been added successfully!)">
+	{{ include('offredemploi/_form.html.twig', {'button_label': 'create'}) }}
+
+</form>
+
+<a href="{{ path('app_offredemploi_index') }}">back to list</a>
+
+{% endapply %}

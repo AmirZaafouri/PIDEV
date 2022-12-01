@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Offredemploi
+{% endblock %}
+
+{% block body %}
+	{% apply inline_css(source("style.css"), source("bootstrap.min.css")) %}
+	<h1>Edit Offredemploi</h1>
+	<form>
+		{{ include('offredemploi/_form.html.twig', {'button_label': 'Update'}) }}
+	</form>
+	<a href="{{ path('app_offredemploi_index') }}">back to list</a>
+
+	{{ include('offredemploi/_delete_form.html.twig') }}
+	{% endapply %}
+{% endblock %}
