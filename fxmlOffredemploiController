@@ -1,0 +1,475 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package edu.workshop.gui;
+
+import edu.worshop.entites.OffreDemploi;
+import edu.worshop.entites.Studio;
+import edu.worshop.services.OffreDemploiCrud;
+import edu.worshop.utils.MyConnexion;
+import java.awt.Component;
+import java.io.IOException;
+import java.net.URL;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.ResourceBundle;
+import java.util.logging.Logger;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.SortEvent;
+import javafx.scene.control.Spinner;
+import javafx.scene.control.SpinnerValueFactory;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.ContextMenuEvent;
+import javafx.scene.input.MouseEvent;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import org.omg.CORBA.portable.ValueFactory;
+
+/**
+ * FXML Controller class
+ *
+ * @author Administrator
+ */
+public class FXMLOffreDemploiController implements Initializable {
+
+
+    @FXML
+    private TextArea ttDescription;
+    @FXML
+    private Label resTitre;
+    @FXML
+    private Spinner<Integer> spSalaire;
+    @FXML
+    private Spinner<Integer> spType;
+    @FXML
+    private TextField ttSupprimer;
+    @FXML
+    private TableColumn<OffreDemploi, Integer> idOffreDemploi;
+    @FXML
+    private TableColumn<OffreDemploi, String> description;
+    @FXML
+    private TableColumn<OffreDemploi, Integer> salaire;
+    @FXML
+    private TableColumn<OffreDemploi, String> titre;
+    @FXML
+    private TableColumn<OffreDemploi, Integer > type;
+    @FXML
+    private TableColumn<OffreDemploi, Integer> idStudio;
+    @FXML
+    private TableView<OffreDemploi> table;
+    
+
+    /**
+     * Initializes the controller class.
+     * @param url
+     * @param rb
+     */
+    ObservableList<OffreDemploi> ObservableOffreDemploiList = FXCollections.observableArrayList();
+    @FXML
+    private TextField keywordtextField;
+    @FXML
+    private Label haha;
+    @FXML
+    private CheckBox CheckTitre;
+    @FXML
+    private CheckBox CheckDescription;
+    @FXML
+    private CheckBox CheckSalaire;
+    @FXML
+    private CheckBox CheckIDoffre;
+    @FXML
+    private CheckBox CheckIDstudio;
+    @FXML
+    private Label numdat;
+    @FXML
+    private Label LaAffiOffre;
+    
+    
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        // TODO
+        SpinnerValueFactory<Integer> valueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 10000,0,50);
+        valueFactory.setValue(100);
+                spSalaire.setEditable(true);
+        spSalaire.setValueFactory(valueFactory);
+        
+         SpinnerValueFactory<Integer> valueFactory1 = new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 2);
+        valueFactory.setValue(1);
+                spType.setEditable(true);
+        spType.setValueFactory(valueFactory1);
+    fiche();
+UserSing1.setText("joseph12@gmail.com");
+    }
+        public void fiche(){
+           Connection cnx  ;        
+        cnx =MyConnexion.getIstance().getConx() ;
+        String OffreDemploiViewQuery ="SELECT id,titre,salaire,description,idStudio,type_id from offredemploi";
+   
+        try{
+            Statement st;
+            st =cnx.createStatement();
+            ResultSet rs = st.executeQuery(OffreDemploiViewQuery);
+                            ObservableOffreDemploiList.clear();
+            while(rs.next()){
+                Integer queryID=rs.getInt("id");
+                String queryDescription=rs.getString("description");
+                Integer querySalaire=rs.getInt("salaire");
+                String queryTitre=rs.getString("titre");
+                Integer queryIdStudio=rs.getInt("idStudio");
+                Integer queryType=rs.getInt("type_id");
+                ObservableOffreDemploiList.add(new OffreDemploi(queryID,querySalaire,queryDescription,queryTitre,queryType,queryIdStudio));
+            }
+            
+                idOffreDemploi.setCellValueFactory(new  PropertyValueFactory<>("idOffreDemploi"));    
+      description.setCellValueFactory(new  PropertyValueFactory<>("description"));
+    salaire.setCellValueFactory(new  PropertyValueFactory<>("salaire"));
+   titre.setCellValueFactory(new  PropertyValueFactory<>("titre"));
+   type.setCellValueFactory(new  PropertyValueFactory<>("type"));
+   idStudio.setCellValueFactory(new  PropertyValueFactory<>("idStudio"));
+            
+            table.setItems(ObservableOffreDemploiList);
+            
+            FilteredList<OffreDemploi> filteredData = new FilteredList<>(ObservableOffreDemploiList, b -> true);
+            
+            keywordtextField.textProperty().addListener((observable, oldValue,newValue) ->{
+                
+               filteredData.setPredicate((OffreDemploi E) -> {
+                
+                    if(newValue.isEmpty() || newValue == null ){
+                    return true;
+                    }
+                    String ch1 =String.valueOf(E.getSalaire());
+                    String ch2 =String.valueOf(E.getIdOffreDemploi());
+                    String ch3 =String.valueOf(E.getIdStudio());
+                    
+                    String searchkeyword = newValue.toLowerCase();
+                    
+                    if((E.getTitre().toLowerCase().indexOf(searchkeyword) > -1)&&(CheckTitre.isSelected())){
+                    return true;
+                    }
+                    else if((E.getDescription().toLowerCase().indexOf(searchkeyword) > -1)&&(CheckDescription.isSelected())){
+                    return true;
+                    } else if((ch1.indexOf(searchkeyword) > -1)&&(CheckSalaire.isSelected())){
+                    return true;
+                    }else if((ch2.indexOf(searchkeyword) > -1)&&(CheckIDoffre.isSelected())){
+                    return true;
+                    }else if((ch3.indexOf(searchkeyword) > -1)&&(CheckIDstudio.isSelected())){
+                    return true;
+                    }
+                    
+                    else 
+                        return false;
+                
+                });
+                    
+                
+            });
+            
+            SortedList<OffreDemploi> sortedData = new SortedList <>(filteredData);
+            sortedData.comparatorProperty().bind(table.comparatorProperty());
+            table.setItems(sortedData);
+            
+            
+            //number of data
+     ResultSet resultSet = st.executeQuery("Select COUNT(*) AS total FROM offreDemploi ");
+            resultSet.next();
+            int totalQuestions = resultSet.getInt("total");
+            String lol=String.valueOf(totalQuestions);
+            String chfinal = "Numero de Donnée = "+lol;
+            numdat.setText(chfinal);
+            
+            
+        }catch(SQLException ex){
+            //Logger.getLogger(OffreDemploiViewQuery); 10:35
+            System.out.println(ex.getMessage());
+        }
+       
+    }    
+
+    
+public void validation()throws Exception{                
+
+    /*if(fnom.getText().trim().isEmpty()){
+        Alert fail= new Alert(Alert.AlertType.INFORMATION);
+        fail.setHeaderText("failure");
+        fail.setContentText("You havent typed something");
+        fail.showAndWait();
+        throw new Exception("Exception message");
+  
+     
+    }
+    if(fduree.getText().trim().isEmpty()){
+        Alert fail= new Alert(Alert.AlertType.INFORMATION);
+        fail.setHeaderText("failure");
+        fail.setContentText("you havent typed something");
+        fail.showAndWait();
+           throw new Exception("Exception message");
+  
+     
+    }*/
+    if(resTitre.getText().trim().isEmpty()){
+        Alert fail= new Alert(Alert.AlertType.INFORMATION);
+        fail.setHeaderText("failure");
+        fail.setContentText("you havent typed something");
+        fail.showAndWait();
+           throw new Exception("Exception message");
+  
+     
+    }
+    if(ttDescription.getText().trim().isEmpty()){
+        Alert fail= new Alert(Alert.AlertType.INFORMATION);
+        fail.setHeaderText("failure");
+        fail.setContentText("you havent typed something");
+        fail.showAndWait();
+           throw new Exception("Exception message");
+  
+     
+    }
+
+ 
+}
+public void validationSupp()throws Exception{
+
+            
+}
+public void validationMod(JTextField field1,JTextField field2,JTextField field3)throws Exception{
+
+    if(field1.getText().trim().isEmpty()&&field2.getText().trim().isEmpty()&&field3.getText().trim().isEmpty()){
+        Alert fail= new Alert(Alert.AlertType.INFORMATION);
+        fail.setHeaderText("failure");
+        fail.setContentText("you havent typed something");
+        fail.showAndWait();
+           throw new Exception("Exception message");
+  
+     
+    }
+   
+}
+
+    @FXML
+    private void btAjout(ActionEvent event) throws Exception{
+
+        
+        String description= ttDescription.getText();
+        
+        /*final int salaire;
+        spSalaire.setEditable(true);
+        salaire=spSalaire.getValue();
+        String s=String.valueOf(salaire);*/
+        int salaire = spSalaire.getValue();
+        int type = spType.getValue();
+        
+        String titre=resTitre.getText();
+        
+       
+        OffreDemploi e = new OffreDemploi(salaire,description,titre,type);
+        OffreDemploiCrud Cc = new OffreDemploiCrud();
+        
+        
+        try{
+            Studio s= Cc.getUserByMail(UserSing1.getText());
+                            validation();
+            Cc.ajouterOffreDemploi(e, s);
+            
+            if(Cc.getTest()==false){
+                Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+              alert.setTitle("Information Dialog");
+
+              alert.setHeaderText(null);
+
+              alert.setContentText("exist deja!");
+                alert.showAndWait();
+            }
+            else {
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+              alert.setTitle("Information Dialog");
+
+              alert.setHeaderText(null);
+
+              alert.setContentText("Offre d'emploi ajoutée avec succés!");
+                alert.showAndWait();
+                             
+         
+            }
+              fiche();
+        } catch (IOException ex){
+                    System.out.println(ex.getMessage());
+        }
+
+    }
+
+
+    @FXML
+    private void btTitre(ActionEvent event) {
+        TextInputDialog dialog = new TextInputDialog();
+        
+        
+
+        dialog.setTitle("Titre");
+        dialog.setHeaderText("Entrer titre:");
+        dialog.setContentText("Titre:");
+
+        Optional<String> result = dialog.showAndWait();
+
+        if(result.isPresent()){
+            resTitre.setText(result.get());
+        }
+    }
+
+    @FXML
+    private Label UserSing1;
+    
+    @FXML
+    private void btSupprimer(ActionEvent event) throws Exception {
+            
+OffreDemploiCrud Cc = new OffreDemploiCrud();
+            validationSupp(); 
+        String stidOffreDemploi = ttSupprimer.getText();
+        int idOffreDemploi = Integer.parseInt(stidOffreDemploi);
+        
+        try{ 
+
+           
+                    Component ParentComponent = null;
+int response=JOptionPane.showConfirmDialog(ParentComponent,"voulez vous continuer?","confirm",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+validationSupp();
+
+Studio s =Cc.getUserByMail(UserSing1.getText());
+            if(response==JOptionPane.YES_OPTION){
+                
+                     //if(s.getEmailadresse()==UserSing1.getText()){
+           Cc.suprimerOffreDemploi(idOffreDemploi); 
+                   
+                 fiche(); 
+                     }
+                 
+            
+             else if(response==JOptionPane.NO_OPTION){    
+                     Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+              alert.setTitle("Information Dialog");
+
+              alert.setHeaderText(null);
+
+              alert.setContentText("Ok");
+                alert.showAndWait();
+                    
+                 }
+           
+            
+                       
+        } catch (IOException ex){
+                    System.out.println(ex.getMessage());
+        }
+              
+    }
+
+    /*private void selectItem(ContextMenuEvent event) {
+        
+    }
+
+    private void selectItem(MouseEvent event) {
+        
+    }*/
+
+    @FXML
+    private void btModifier(ActionEvent event) throws Exception {
+    
+        int idOffreDemploimod = Integer.parseInt(haha.getText());
+        
+        String titremod =resTitre.getText();
+        String descriptionmod =ttDescription.getText();
+        int salairemod = spSalaire.getValue();
+        int typemod = spType.getValue();
+        
+        
+        OffreDemploi e = new OffreDemploi(idOffreDemploimod,salairemod,descriptionmod,titremod,typemod);
+        OffreDemploiCrud Cc = new OffreDemploiCrud();
+
+            
+            
+
+  
+        
+        try{ 
+            Studio s= Cc.getUserByMail(UserSing1.getText());
+             Component ParentComponent = null;
+int response=JOptionPane.showConfirmDialog(ParentComponent,"voulez vous continuer?","confirm",JOptionPane.YES_NO_OPTION,JOptionPane.QUESTION_MESSAGE);
+validationSupp();
+
+            if(response==JOptionPane.YES_OPTION){
+             // if(s.getEmailadresse()==UserSing1.getText()){
+             
+            validation();
+            Cc.modifierOffreDemploi( e, s);
+            } else{
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+              alert.setTitle("Information Dialog");
+
+              alert.setHeaderText(null);
+
+              alert.setContentText("vous n'avez pas le droit de le modifier!");
+                alert.showAndWait();
+            }
+            fiche();
+        } catch (IOException ex){
+                    System.out.println(ex.getMessage());
+        }
+              
+        
+        
+
+    }
+
+boolean test2=false;
+    @FXML
+    private void rowclick(MouseEvent event) {
+            OffreDemploi select = table.getSelectionModel().getSelectedItem();
+        
+        resTitre.setText(String.valueOf(select.getTitre()));
+        
+        int n1=select.getSalaire();
+        int n3=select.getType();
+        spSalaire.getValueFactory().setValue(n1);
+        spType.getValueFactory().setValue(n3);
+        
+        ttDescription.setText(String.valueOf(select.getDescription()));
+        int n2=select.getIdOffreDemploi();
+        haha.setText(String.valueOf(n2));
+        ttSupprimer.setText(String.valueOf(n2));
+        boolean test2=true;
+    }
+          
+    }
+
+
+    
+
